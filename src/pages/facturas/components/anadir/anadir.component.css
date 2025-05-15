@@ -1,0 +1,111 @@
+h5{
+  font-family: "Poppins", sans-serif;
+}
+
+/* .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+} */
+
+.file-upload {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* .custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+p-button {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+}
+.form-container {
+  background: white;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 350px;
+}
+/* .form-container h2 {
+  margin-bottom: 15px;
+  color: #333;
+} */
+/* label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #555;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+} */
+/*
+* TODO ESTILOS  COMENTADOS PARA CAMBIAR EL BOTON ADJUNTAR
+*/
+
+/* ::ng-deep .p-fileupload button.p-button {
+  background-color: dodgerblue !important;
+  color: white !important;
+  border: none;
+} */
+
+/* input[type="file"] {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+  max-width: 300px;
+} */
+
+input[type="file"] {
+  display: none; /* Oculta el input de archivo real */
+}
+p-button {
+  width: 100%;
+  max-width: 200px;
+  align-self: center;
+}
+
+.custom-file-upload {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: #007bff; /* Color de fondo personalizado */
+  color: white; /* Color de texto */
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}

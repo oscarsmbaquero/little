@@ -1,0 +1,151 @@
+<!-- style="background-color: rgb(20, 20, 20)" -->
+<nav
+  class="navbar navbar-expand-md sticky-top"
+  style="background-color: white"
+>
+  <div class="container-fluid padding:10px">
+    <!-- <a class="navbar-brand" href="#">
+      &nbsp;<span class="text-info">ZSS</span>&nbsp;<span
+        class="text-danger text-info"
+        >IA</span
+      >
+    </a> -->
+    <img src="../../../assets/images/logo-little.jpg" width="180px"/>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      style="border: none; background: transparent"
+    >
+      <svg viewBox="0 0 32 32" width="32" height="32">
+        <path
+          class="line line-top-bottom"
+          d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
+        ></path>
+        <path class="line" d="M7 16 27 16"></path>
+      </svg>
+    </button>
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+      style="background-color: white"
+    >
+      <div class="offcanvas-header">
+        <img src="../../../assets/images/logo-little.jpg" width="250px"/>
+        <button
+          style="color: white; top: 0;"
+          type="button"
+          class="btn-close custom-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <!--primera lista-->
+      <div class="offcanvas-body">
+        <ul class="navbar-nav mx-auto my-2 my-lg-0" style="padding: 15px">
+          @if(userActive){
+            <li
+            class="nav-item"
+            (click)="selectOption('inicio')"
+            [class.selected]="selectedOption === 'inicio'"
+          >
+            <a
+              class="nav-link"
+              [routerLink]="['inicio']"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              data-bs-dismiss="offcanvas"
+            >
+              <span>Inicio</span>
+            </a>
+          </li>
+        
+          <hr class="dropdown-divider" />  
+          <li
+            class="nav-item"
+            (click)="selectOption('facturas')"
+            [class.selected]="selectedOption === 'facturas'"
+          >
+            <a
+              class="nav-link"
+              [routerLink]="['facturas']"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              data-bs-dismiss="offcanvas"
+            >
+              <span>Facturas</span>
+            </a>
+          </li>
+          <hr class="dropdown-divider" />
+          <li
+            (click)="selectOption('chatbox')"
+            [class.selected]="selectedOption === 'chatbox'"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a
+              class="nav-link"
+              [routerLink]="['/chatbox']"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              data-bs-dismiss="offcanvas"
+            >
+              <span> ChatBox </span>
+            </a>
+          </li>
+          <hr class="dropdown-divider" />
+          <li
+            (click)="selectOption('asistentes')"
+            [class.selected]="selectedOption === 'asistentes'"
+            class="nav-item"
+            routerLinkActive="active"
+          >
+            <a
+              class="nav-link"
+              [routerLink]="['/asistentes']"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              data-bs-dismiss="offcanvas"
+            >
+              <span>Asistentes</span>
+            </a>
+          </li>
+          }
+        </ul>
+        <ul class="navbar-nav ml-auto my-2 my-lg-0" style="padding: 15px">
+          @if(!userActive){
+          <li class="nav-item" routerLinkActive="active">
+            <a
+              class="nav-link"
+              [routerLink]="['/login']"
+              data-toggle="collapse"
+              data-target=".navbar-collapse.show"
+              data-bs-dismiss="offcanvas"
+              ><span>Iniciar sesión</span>
+            </a>
+          </li>
+          } @else {
+            <li class="nav-item"  style="text-align: center;" routerLinkActive="active" >
+              <a
+                class="nav-link"
+                routerLink="/logout"
+                data-bs-toggle="collapse"
+                data-bs-target=".navbar-collapse.show"
+                data-bs-dismiss="offcanvas"
+                (click)="logout()"
+              ><span>Cerrar sesión</span>                
+              </a>
+            </li>
+          }
+          <!-- <li class="d-block d-md-none" style="text-align: center;"><img src="https://res.cloudinary.com/dcfk8yjwr/image/upload/v1742888828/zss/fondo_blanco_enzshe.png" width="250px"/></li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

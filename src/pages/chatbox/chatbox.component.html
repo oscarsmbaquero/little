@@ -1,0 +1,26 @@
+<div class="conta">
+    <div class="row">
+      @for (card of menu; track card.id) {
+        <div  class="col-12 col-md-6  mb-4">
+            <a [routerLink]="card.link" class="card-link">
+              <div class="card">
+                <div>
+                  <img
+                    [src]="card.imageUrl"
+                    class="card-image"
+                    alt="{{ card.description }}"
+                    width="15px"
+                  />
+                </div>
+                <div class="card-body">
+                  <p class="card-text">{{ card.description }}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+      }
+      
+    </div>
+  </div>
+  
+

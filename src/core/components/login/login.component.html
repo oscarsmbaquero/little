@@ -1,0 +1,43 @@
+<div class="container d-flex flex-column flex-md-row align-items-center justify-content-center vh-80 mt-4" style="background-color: white;">
+  <div class="image-container text-center d-md-flex d-flex justify-content-center">
+    <img src="https://res.cloudinary.com/dcfk8yjwr/image/upload/v1742888828/zss/fondo_blanco_enzshe.png" alt="logo zs solutions" class="img-fluid custom-img" />
+  </div>
+  <div class="login-container w-100 w-md-50">
+    <form novalidate [formGroup]="loginUser">
+      <div class="input-container">
+        @if( loginError !== null && !loginError){
+          <p-message severity="success" icon="pi pi-times-circle" styleClass="mb-2">LOGIN OK</p-message>
+        }@else if(loginError !== null && loginError) {
+          <p-message severity="error" icon="pi pi-times-circle" styleClass="mb-2">LOGIN ERROR</p-message>
+        }
+        <input matInput formControlName="user" placeholder="User" required />
+        @if(loginUser.get('user')?.errors?.['required']){
+        <small>El correo es obligatorio</small>
+        }
+      </div>
+      <div class="input-container">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          matInput
+          formControlName="password"
+          placeholder="Contraseña"
+        />
+        <i
+          class="fa"
+          [class.fa-eye]="showPassword"
+          [class.fa-eye-slash]="!showPassword"
+          (click)="togglePasswordVisibility('password')"
+        ></i>
+        @if(loginUser.get('password')?.invalid &&
+        loginUser.get('password')?.touched){
+        <div>
+          <small>La contraseña es obligatoria</small>
+        </div>
+        }
+      </div>
+      <div class="card flex justify-center gap-4 mt-5">
+        <p-button label="Enviar" icon="pi pi-check" [loading]="loading" (onClick)="onSubmit()" />
+    </div>
+    </form>
+  </div>
+</div>

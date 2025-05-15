@@ -1,0 +1,25 @@
+<div class="form">
+  <form novalidate [formGroup]="addPhoto" class="form-container">
+    <h5>Adjuntar foto</h5>
+    <div class="file-upload">
+      <label for="fileInput" class="custom-file-upload">
+        <i class="pi pi-upload">&nbsp;</i>
+        {{ nameArchivo || "Seleccionar archivo" }}
+      </label>
+      <input
+        type="file"
+        id="fileInput"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+    <div></div>
+    <p-button
+      label="Enviar"
+      icon="pi pi-check"
+      size="small"
+      (click)="onSubmit()"
+      [disabled]="!addPhoto.valid"
+    ></p-button>
+  </form>
+</div>

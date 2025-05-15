@@ -1,0 +1,19 @@
+span{
+    font-family: 'Roboto', Courier, monospace;
+}
+
+footer {
+    /* background-color: rgb(20, 21, 50); */
+    background-color: white;
+    padding: 2rem 0;
+  }
+  
+  .social-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .social-links a:hover {
+    color: #17a2b8;
+  }
