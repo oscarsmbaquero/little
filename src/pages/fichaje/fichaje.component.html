@@ -9,15 +9,29 @@
             <div class="hand minute" [style.transform]="minuteTransform"></div>
             <div class="hand second" [style.transform]="secondTransform"></div>
             <div class="center-circle"></div>
+            <div class="number number-12">12</div>
+            <div class="number number-3">3</div>
+            <div class="number number-6">6</div>
+            <div class="number number-9">9</div>
           </div>
           <div class="d-grid gap-4">
-            <p-button styleClass="w-100" label="Fichar entrada" severity="success" (click)="ficharEntrada()"></p-button>
+            <p-button
+              styleClass="w-100"
+              label="Fichar entrada"
+              severity="success"
+              (click)="ficharEntrada()"
+            ></p-button>
             @if (horaEntrada) {
             <p class="text-muted">
               Hora de entrada: <strong>{{ horaEntrada }}</strong>
             </p>
             }
-            <p-button styleClass="w-100" label="Fichar salida" severity="info" (click)="ficharSalida()"></p-button>
+            <p-button
+              styleClass="w-100"
+              label="Fichar salida"
+              severity="info"
+              (click)="ficharSalida()"
+            ></p-button>
             @if (horaSalida) {
             <p class="text-muted">
               Hora de salida: <strong>{{ horaSalida }}</strong>
