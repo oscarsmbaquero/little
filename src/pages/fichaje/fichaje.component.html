@@ -1,21 +1,27 @@
-<div class="container mt-5 fichaje-container">
+<div class="container-fluid mt-5 fichaje-container">
   <div class="row justify-content-center">
     <div class="col-12">
       <div class="card shadow-sm">
         <div class="card-body text-center">
-          <h3 class="mb-4">Fichaje de trabajadores</h3>
-
-          <div class="d-grid gap-3">
-            <button class="btn btn-success" (click)="ficharEntrada()">Fichar entrada</button>
-
+          <h3 class="mb-4">{{ user.user }} Sánchez-Marín Baquero</h3>
+          <div class="clock">
+            <div class="hand hour" [style.transform]="hourTransform"></div>
+            <div class="hand minute" [style.transform]="minuteTransform"></div>
+            <div class="hand second" [style.transform]="secondTransform"></div>
+            <div class="center-circle"></div>
+          </div>
+          <div class="d-grid gap-4">
+            <p-button styleClass="w-100" label="Fichar entrada" severity="success" (click)="ficharEntrada()"></p-button>
             @if (horaEntrada) {
-              <p class="text-muted">Hora de entrada: <strong>{{ horaEntrada }}</strong></p>
+            <p class="text-muted">
+              Hora de entrada: <strong>{{ horaEntrada }}</strong>
+            </p>
             }
-
-            <button class="btn btn-danger" (click)="ficharSalida()">Fichar salida</button>
-
+            <p-button styleClass="w-100" label="Fichar salida" severity="info" (click)="ficharSalida()"></p-button>
             @if (horaSalida) {
-              <p class="text-muted">Hora de salida: <strong>{{ horaSalida }}</strong></p>
+            <p class="text-muted">
+              Hora de salida: <strong>{{ horaSalida }}</strong>
+            </p>
             }
           </div>
         </div>

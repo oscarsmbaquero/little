@@ -2,6 +2,7 @@
   .card {
     border-radius: 1rem;
     background-color: #f8f9fa;
+    border: 1px solid green;
 
     h3 {
       font-weight: 600;
@@ -16,4 +17,51 @@
       margin-bottom: 0;
     }
   }
+
+  .clock {
+  width: 200px;
+  height: 200px;
+  border: 6px solid black;
+  border-radius: 50%;
+  position: relative;
+  margin: 20px auto;
+  background: white;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+  transform: rotate(0deg);
+}
+
+.hour {
+  height: 50px;
+  width: 6px;
+  background-color: #333;
+}
+
+.minute {
+  height: 70px;
+  width: 4px;
+  background-color: #666;
+}
+
+.second {
+  height: 90px;
+  width: 2px;
+  background-color: red;
+}
+
+.center-circle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: black;
+  border-radius: 50%;
+  top: calc(50% - 6px);
+  left: calc(50% - 6px);
+}
+
 }

@@ -17,12 +17,11 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports:[ReactiveFormsModule, MessageModule, ButtonModule],
+  imports: [ReactiveFormsModule, MessageModule, ButtonModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
-
   public loginUser: FormGroup;
   public submitted: boolean = false;
   showPassword: boolean = false;
@@ -32,42 +31,40 @@ export class LoginComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userServices: UsersService,
-    private router: Router,
-    
+    private router: Router
   ) {
     this.loginUser = this.formBuilder.group({
-      user: ['', [Validators.required ]],
+      user: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
 
   public onSubmit(): void {
     this.submitted = true;
-    this.loginError = null; 
-    this.loading = true;  
+    this.loginError = null;
+    this.loading = true;
     if (this.loginUser.valid) {
       const user: any = {
         user: this.loginUser.get('user')?.value,
         password: this.loginUser.get('password')?.value,
       };
-  
+
       this.userServices.login(user).subscribe(
         (response) => {
           this.loginError = false;
           setTimeout(() => {
             this.loading = false;
-            this.router.navigate(['facturas']);  
+            this.router.navigate(['fichaje']);
           }, 1500);
-          
         },
         (error) => {
-this.loginError = true;
+          this.loginError = true;
           console.error('Error al enviar los datos', error);
           this.loading = false;
         }
       );
     }
-  } 
+  }
 
   /**
    * Método para el ojo del input de password
@@ -78,6 +75,4 @@ this.loginError = true;
       this.showPassword = !this.showPassword;
     }
   }
-
-
 }
