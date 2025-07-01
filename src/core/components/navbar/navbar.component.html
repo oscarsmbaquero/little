@@ -52,17 +52,17 @@
           @if(userActive){
             <li
             class="nav-item"
-            (click)="selectOption('inicio')"
-            [class.selected]="selectedOption === 'inicio'"
+            (click)="selectOption('fichaje')"
+            [class.selected]="selectedOption === 'fichaje'"
           >
             <a
               class="nav-link"
-              [routerLink]="['inicio']"
+              [routerLink]="['fichaje']"
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
               data-bs-dismiss="offcanvas"
             >
-              <span>Inicio</span>
+              <span>Fichar</span>
             </a>
           </li>
         

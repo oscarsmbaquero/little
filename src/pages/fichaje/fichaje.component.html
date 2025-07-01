@@ -1,0 +1,25 @@
+<div class="container mt-5 fichaje-container">
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body text-center">
+          <h3 class="mb-4">Fichaje de trabajadores</h3>
+
+          <div class="d-grid gap-3">
+            <button class="btn btn-success" (click)="ficharEntrada()">Fichar entrada</button>
+
+            @if (horaEntrada) {
+              <p class="text-muted">Hora de entrada: <strong>{{ horaEntrada }}</strong></p>
+            }
+
+            <button class="btn btn-danger" (click)="ficharSalida()">Fichar salida</button>
+
+            @if (horaSalida) {
+              <p class="text-muted">Hora de salida: <strong>{{ horaSalida }}</strong></p>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

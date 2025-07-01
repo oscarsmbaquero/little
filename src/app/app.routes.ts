@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { FacturasComponent } from '../pages/facturas/facturas.component';
 import { ChatboxComponent } from '../pages/chatbox/chatbox.component';
 import { ChatComponent } from '../shared/components/chat/chat.component';
-import { InicioComponent } from '../pages/inicio/inicio.component';
+import { FichajeComponent } from '../pages/fichaje/fichaje.component';
 import { LoginComponent } from '../core/components/login/login.component';
 
 export const routes: Routes = [
@@ -12,14 +12,14 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "facturas",//raiz de la app
+    path: "fichaje",//raiz de la app
     pathMatch: 'full',//coincida nombre exacto
-    component: FacturasComponent
+    component: FichajeComponent
   },
   {
     path: "",//raiz de la app
     pathMatch: 'full',//coincida nombre exacto
-    component: InicioComponent
+    component: LoginComponent
   },
   {
     path: 'chatbox',
