@@ -17,11 +17,17 @@ export class FichajeComponent implements OnInit, OnDestroy {
   secondTransform = '';
   private intervalId: any;
   user: any;
+  tienda!: string;
+  relojCard : any;
 
   ngOnInit() {
     this.actualizarReloj();
     this.intervalId = setInterval(() => this.actualizarReloj(), 1000);
-    this.user = JSON.parse(localStorage.getItem('user') || '{}');
+    const usuario = JSON.parse(localStorage.getItem('user') || '{}');
+    this.user = usuario.data.user;
+    this.tienda = usuario.data.tienda;
+    
+
   }
 
   ngOnDestroy() {
@@ -68,6 +74,7 @@ export class FichajeComponent implements OnInit, OnDestroy {
     this.secondTransform = `rotate(${seg * 6}deg)`;
     this.minuteTransform = `rotate(${min * 6 + seg * 0.1}deg)`;
     this.hourTransform = `rotate(${(hora % 12) * 30 + min * 0.5}deg)`;
+    this.relojCard = `${ahora.toLocaleDateString('es-ES')} ${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
   }
 
   obtenerUbicacion(): Promise<{ lat: number; lng: number }> {
