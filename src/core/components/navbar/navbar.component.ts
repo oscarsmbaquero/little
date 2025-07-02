@@ -47,7 +47,7 @@ userActive: any;
       this.selectedOption = option;
     });
     this.usersService.getCurrentUser().subscribe(user => {
-      this.userActive = user?.user || '';
+      this.userActive = user?.data || '';
       console.log(this.userActive, 'navbar');
     }); 
     this.translate.setDefaultLang('es');

@@ -2,7 +2,7 @@ import { environment } from '../../../enviroment/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IUser } from '../../models/user-models';
+import { IUser, IUserResponse } from '../../models/user-models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -10,8 +10,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UsersService {
-  private currentUserSubject = new BehaviorSubject<IUser | null>(null);
-  public currentUser$: Observable<IUser | null>;
+  private currentUserSubject = new BehaviorSubject<IUserResponse | null>(null);
+  public currentUser$: Observable<IUserResponse | null>;
 
   constructor(private httpClient: HttpClient) {
     const storedUser = localStorage.getItem('user');
@@ -25,7 +25,10 @@ export class UsersService {
     return this.httpClient.post<IUser>(endpoint, credentials).pipe(
       map((user) => {
         if (user) {
-          this.currentUserSubject.next(user);
+          const userResponse: IUserResponse = {
+            data: user
+          };
+          this.currentUserSubject.next(userResponse);
           localStorage.setItem('user', JSON.stringify(user));
           return true;
         } else {
@@ -35,13 +38,16 @@ export class UsersService {
     );
   }
 
-  getCurrentUser(): Observable<IUser | null> {
+  getCurrentUser(): Observable<IUserResponse | null> {
     return this.currentUserSubject.asObservable();
   }
 
   setCurrentUser(user: IUser) {
-    this.currentUserSubject.next(user);
-    localStorage.setItem('user', JSON.stringify(user));
+    const userResponse: IUserResponse = {
+      data: user
+    };
+    this.currentUserSubject.next(userResponse);
+    localStorage.setItem('user', JSON.stringify(userResponse));
   }
 
   clearCurrentUser() {

@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
+import { FichajeDiario } from '../../core/models/fichaje-models';// Asegúrate de que este modelo exista y esté correctamente definido
 
 @Component({
   selector: 'app-fichaje',
@@ -33,13 +34,29 @@ export class FichajeComponent implements OnInit, OnDestroy {
   }
 
   ficharEntrada(): void {
-    this.horaEntrada = this.obtenerHoraActual();
-    console.log('Entrada fichada a las:', this.horaEntrada);
+    this.obtenerUbicacion()
+      .then((ubicacion) => {
+        this.horaEntrada = this.obtenerHoraActual();
+        console.log('Entrada fichada a las:', this.horaEntrada);
+        console.log('Ubicación de entrada:', ubicacion.lat, ubicacion.lng);
+        // Aquí puedes enviar la hora y la ubicación a tu backend si lo necesitas
+      })
+      .catch((error) => {
+        console.error('Error al obtener la ubicación para entrada:', error);
+      });
   }
 
   ficharSalida(): void {
-    this.horaSalida = this.obtenerHoraActual();
-    console.log('Salida fichada a las:', this.horaSalida);
+    this.obtenerUbicacion()
+      .then((ubicacion) => {
+        this.horaSalida = this.obtenerHoraActual();
+        console.log('Salida fichada a las:', this.horaSalida);
+        console.log('Ubicación de salida:', ubicacion.lat, ubicacion.lng);
+        // Aquí puedes enviar la hora y la ubicación a tu backend si lo necesitas
+      })
+      .catch((error) => {
+        console.error('Error al obtener la ubicación para salida:', error);
+      });
   }
 
   private actualizarReloj(): void {
@@ -51,5 +68,25 @@ export class FichajeComponent implements OnInit, OnDestroy {
     this.secondTransform = `rotate(${seg * 6}deg)`;
     this.minuteTransform = `rotate(${min * 6 + seg * 0.1}deg)`;
     this.hourTransform = `rotate(${(hora % 12) * 30 + min * 0.5}deg)`;
+  }
+
+  obtenerUbicacion(): Promise<{ lat: number; lng: number }> {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            resolve({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+          },
+          (error) => {
+            reject(error.message);
+          }
+        );
+      } else {
+        reject('La geolocalización no está soportada por este navegador.');
+      }
+    });
   }
 }

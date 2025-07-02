@@ -10,8 +10,8 @@
         }@else if(loginError !== null && loginError) {
           <p-message severity="error" icon="pi pi-times-circle" styleClass="mb-2">LOGIN ERROR</p-message>
         }
-        <input matInput formControlName="user" placeholder="User" required />
-        @if(loginUser.get('user')?.errors?.['required']){
+        <input matInput formControlName="mail" placeholder="Mail" required />
+        @if(loginUser.get('mail')?.errors?.['required']){
         <small>El correo es obligatorio</small>
         }
       </div>

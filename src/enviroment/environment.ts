@@ -4,8 +4,8 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'https://node-facturas-ia.vercel.app/'
-    //apiUrl: 'http://localhost:5000/'
+    //apiUrl: 'https://little-back.vercel.app/'
+    apiUrl: 'http://localhost:5000/'
   };
   
   /*
