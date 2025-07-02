@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { FichajeDiario } from '../../core/models/fichaje-models';// Asegúrate de que este modelo exista y esté correctamente definido
+import { FichajesService } from '../../core/services/fichajes/fichajes.service';
 
 @Component({
   selector: 'app-fichaje',
@@ -18,7 +19,29 @@ export class FichajeComponent implements OnInit, OnDestroy {
   private intervalId: any;
   user: any;
   tienda!: string;
+  idUsuario!: number;
   relojCard : any;
+  registro: FichajeDiario = {
+    idUsuario: 0,
+    dia: '',
+    entrada: {
+      hora: '',
+      lat: 0,
+      lng: 0
+  },
+  salida: {
+    hora: '',
+    lat: 0,
+    lng: 0
+  }
+};
+
+constructor(
+  private fichajesService: FichajesService
+){
+
+}
+
 
   ngOnInit() {
     this.actualizarReloj();
@@ -26,6 +49,7 @@ export class FichajeComponent implements OnInit, OnDestroy {
     const usuario = JSON.parse(localStorage.getItem('user') || '{}');
     this.user = usuario.data.user;
     this.tienda = usuario.data.tienda;
+    this.idUsuario = usuario.data.idUsuario; 
     
 
   }
@@ -40,17 +64,27 @@ export class FichajeComponent implements OnInit, OnDestroy {
   }
 
   ficharEntrada(): void {
-    this.obtenerUbicacion()
-      .then((ubicacion) => {
-        this.horaEntrada = this.obtenerHoraActual();
-        console.log('Entrada fichada a las:', this.horaEntrada);
-        console.log('Ubicación de entrada:', ubicacion.lat, ubicacion.lng);
-        // Aquí puedes enviar la hora y la ubicación a tu backend si lo necesitas
-      })
-      .catch((error) => {
-        console.error('Error al obtener la ubicación para entrada:', error);
-      });
-  }
+  this.obtenerUbicacion()
+    .then((ubicacion) => {
+      this.horaEntrada = this.obtenerHoraActual();
+      this.registro.idUsuario = this.idUsuario; 
+      this.registro.dia = this.relojCard.split(' ')[0];
+      this.registro.entrada.hora = this.horaEntrada;
+      this.registro.entrada.lat = ubicacion.lat;
+      this.registro.entrada.lng = ubicacion.lng;
+      this.fichajesService.setFichajeEntrada(this.registro)
+        .subscribe((response) => {
+          console.log('Fichaje de entrada registrado:', response);
+        });
+
+      console.log('Entrada fichada a las:', this.registro);
+      console.log('Ubicación de entrada:', ubicacion.lat, ubicacion.lng);
+    })
+    .catch((error) => {
+      console.error('Error al obtener la ubicación para entrada:', error);
+    });
+}
+
 
   ficharSalida(): void {
     this.obtenerUbicacion()

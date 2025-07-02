@@ -21,7 +21,7 @@
   background-repeat: no-repeat;
   opacity: 0.3;
   z-index: 0;
-  pointer-events: none; /* ✅ importante */
+  pointer-events: none; 
 }
 
 .main::after {
@@ -31,7 +31,7 @@
   background-color: white;
   opacity: 0.3;
   z-index: 1;
-  pointer-events: none; /* ✅ importante */
+  pointer-events: none; 
 }
 
 .main > * {
