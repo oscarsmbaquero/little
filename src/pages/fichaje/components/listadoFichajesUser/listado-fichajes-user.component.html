@@ -9,11 +9,9 @@
             <tr>
               <th>Día</th>
               <th>Hora Entrada</th>
-              <th>Latitud Entrada</th>
-              <th>Longitud Entrada</th>
+              <th>Ubicación</th>
               <th>Hora Salida</th>
-              <th>Latitud Salida</th>
-              <th>Longitud Salida</th>
+              <th>Ubicación</th>
             </tr>
           </thead>
           <tbody>
@@ -21,11 +19,9 @@
               <tr>
                 <td>{{ registro.dia }}</td>
                 <td>{{ registro.entrada.hora }}</td>
-                <td>{{ registro.entrada.lat }}</td>
-                <td>{{ registro.entrada.lng }}</td>
+                <td>{{ registro.localidadEntrada || 'Cargando...' }}</td>
                 <td>{{ registro.salida.hora }}</td>
-                <td>{{ registro.salida.lat }}</td>
-                <td>{{ registro.salida.lng }}</td>
+                <td>{{ registro.localidadSalida || '...' }}</td>
               </tr>
             }
           </tbody>
