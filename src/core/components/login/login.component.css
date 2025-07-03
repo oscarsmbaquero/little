@@ -4,45 +4,15 @@
   justify-content: center;
   min-height: 80vh;
   flex-wrap: wrap; 
-  background-color: red;
-  .image-container, .login-container {
-    flex: 1;
-    max-width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image-container img {
-    max-width: 100%;
-    height: auto;
-  }
+  
+}
 
   .login-container {
     flex-direction: column;
     max-width: 50%;
   }
 
-  @media (max-width: 768px) {
-    flex-direction: column;
-    
-    .image-container {
-      display: flex; /* Asegura que se muestre */
-      max-width: 100%;
-      justify-content: center;
-      height: 150px;
-    }
-
-    .image-container img {
-      width: 150px; /* Hace la imagen más pequeña */
-      max-width: 50%; /* Evita que sea demasiado grande */
-    }
-
-    .login-container {
-      max-width: 100%;
-    }
-  }
-}
+ 
 
 form{
   display: flex;
