@@ -27,7 +27,7 @@ form{
   /* display: flex;
   justify-content: center;
   align-items: center; */
-  width: 80%; /* Se asegura de que ocupe todo el ancho disponible */
+  width: 80%; 
 }
 
 input[formControlName] {
