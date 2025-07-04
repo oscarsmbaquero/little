@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { FichajeDiario } from '../../../../core/models/fichaje-models';
 import { FichajesService } from '../../../../core/services/fichajes/fichajes.service';
 import { ButtonModule } from 'primeng/button';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-anadir-fichejes',
   standalone: true,
-  imports: [ButtonModule],
+  imports: [ButtonModule, MessageModule],
   templateUrl: './anadir-fichejes.component.html',
   styleUrl: './anadir-fichejes.component.css',
 })
@@ -17,6 +18,7 @@ export class AnadirFichejesComponent {
   minuteTransform = '';
   secondTransform = '';
   existeFichajeHoy = false;
+  fichajeRegistradoOk = false;
   private intervalId: any;
   user: any;
   tienda!: string;
@@ -72,6 +74,10 @@ export class AnadirFichejesComponent {
           .setFichajeEntrada(this.registro)
           .subscribe((response) => {
             console.log('Fichaje de entrada registrado:', response);
+            this.fichajeRegistradoOk = true;
+            setTimeout(() => {
+              this.fichajeRegistradoOk = false;
+            }, 2500);
           });
         this.existeFichajeHoy = true;
       })
@@ -95,6 +101,10 @@ export class AnadirFichejesComponent {
             console.log('Fichaje de salida registrado:', response);
           });
         this.existeFichajeHoy = true;
+        this.fichajeRegistradoOk = true;
+            setTimeout(() => {
+              this.fichajeRegistradoOk = false;
+            }, 2500);
       })
       .catch((error) => {
         console.error('Error al obtener la ubicación para entrada:', error);
@@ -147,6 +157,12 @@ export class AnadirFichejesComponent {
           const horaFichajeEntrada = response[0].entrada.hora;
           this.horaEntrada = horaFichajeEntrada;
           this.disabledSalidaFichaje = false
+          const horaFichajeSalida = response[0].salida.hora;
+          if (horaFichajeSalida) {
+            this.horaSalida = horaFichajeSalida;
+          } else {
+            this.horaSalida = null;
+          }
         }
       },
       (error) => {

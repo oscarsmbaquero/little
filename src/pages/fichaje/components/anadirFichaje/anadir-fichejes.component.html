@@ -17,6 +17,7 @@
             <div class="number number-9">9</div>
           </div>
           <div class="d-grid gap-4">
+            @if(fichajeRegistradoOk){<p-message severity="success" icon="pi pi-times-circle" styleClass="mb-2">REGISTRADO OK</p-message>}
             @if(!existeFichajeHoy){
             <p-button
               styleClass="w-100"
