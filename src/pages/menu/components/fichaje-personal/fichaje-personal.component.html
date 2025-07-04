@@ -1,0 +1,42 @@
+<div class="container-fluid mt-4">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="form-group">
+        <label for="miSelect">Selecciona una opción:</label>
+        <select
+          id="miSelect"
+          class="form-control"
+          [(ngModel)]="opcionSeleccionada"
+          name="miSelect"
+        >
+          @for (opcion of opciones; track opcion.valor) {
+            <option [value]="opcion.valor">{{ opcion.label }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aquí puedes mostrar la tabla si hay opción seleccionada -->
+  @if(opcionSeleccionada){
+<div class="row justify-content-center mt-4">
+  <div class="col-12 col-md-10">
+    <!-- Tu tabla va aquí -->
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Columna 1</th>
+          <th>Columna 2</th>
+          <th>Columna 3</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Aquí renderizas tus filas -->
+      </tbody>
+    </table>
+  </div>
+</div>
+}
+</div>
+
+    
