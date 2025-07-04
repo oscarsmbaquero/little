@@ -9,7 +9,7 @@ html, body {
 position: relative;
   flex: 1;
   padding: 0;
-  min-height: calc(100vh - 120px); /* Ajusta este valor si tienes header/footer */
+  min-height: calc(100vh - 120px); 
   display: flex;
   flex-direction: column; /* importante */
   align-items: stretch; /* o auto */
@@ -35,7 +35,7 @@ position: relative;
   content: '';
   position: absolute;
   inset: 0;
-  background-color: white;
+  background-color: transparent;
   opacity: 0.3;
   z-index: 1;
   pointer-events: none; 

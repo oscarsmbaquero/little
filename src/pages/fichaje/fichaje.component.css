@@ -7,7 +7,8 @@
 }
 
 :host ::ng-deep .p-tabpanels {
-  background: #ffffff !important;
+  /* background: #ffffff !important; */
+    background-color: transparent !important;
 }
 
 :host ::ng-deep .p-tab-active {
@@ -17,5 +18,4 @@
 }
 .card{
   border: none !important;
-  background-color: red;
 }
