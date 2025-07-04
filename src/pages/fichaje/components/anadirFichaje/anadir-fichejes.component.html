@@ -17,14 +17,14 @@
             <div class="number number-9">9</div>
           </div>
           <div class="d-grid gap-4">
-            @if(!horaEntrada){
+            @if(!existeFichajeHoy){
             <p-button
               styleClass="w-100"
               label="Fichar entrada"
               severity="success"
               (click)="ficharEntrada()"
             ></p-button>
-            } @if (horaEntrada) {
+            } @if (existeFichajeHoy) {
               <p-button
               [disabled]="true"
               styleClass="w-100"

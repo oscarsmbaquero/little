@@ -8,37 +8,36 @@ import { ButtonModule } from 'primeng/button';
   standalone: true,
   imports: [ButtonModule],
   templateUrl: './anadir-fichejes.component.html',
-  styleUrl: './anadir-fichejes.component.css'
+  styleUrl: './anadir-fichejes.component.css',
 })
 export class AnadirFichejesComponent {
   horaEntrada: string | null = null;
-    horaSalida: string | null = null;
-    hourTransform = '';
-    minuteTransform = '';
-    secondTransform = '';
-    private intervalId: any;
-    user: any;
-    tienda!: string;
-    idUsuario!: number;
-    relojCard : any;
-    registro: FichajeDiario = {
-      idUsuario: 0,
-      dia: '',
-      entrada: {
-        hora: '',
-        lat: 0,
-        lng: 0
+  horaSalida: string | null = null;
+  hourTransform = '';
+  minuteTransform = '';
+  secondTransform = '';
+  existeFichajeHoy = false;
+  private intervalId: any;
+  user: any;
+  tienda!: string;
+  idUsuario!: number;
+  relojCard: any;
+  registro: FichajeDiario = {
+    idUsuario: 0,
+    dia: '',
+    entrada: {
+      hora: '',
+      lat: 0,
+      lng: 0,
     },
     salida: {
       hora: '',
       lat: 0,
-      lng: 0
-    }
+      lng: 0,
+    },
   };
 
-  constructor(
-    private fichajesService: FichajesService
-  ){}
+  constructor(private fichajesService: FichajesService) {}
 
   ngOnInit() {
     this.actualizarReloj();
@@ -47,7 +46,7 @@ export class AnadirFichejesComponent {
     this.user = usuario.data.user;
     this.tienda = usuario.data.tienda;
     this.idUsuario = usuario.data.idUsuario;
-
+    this.obtenerFichajesByUserAndDay();
   }
 
   ngOnDestroy() {
@@ -60,27 +59,25 @@ export class AnadirFichejesComponent {
   }
 
   ficharEntrada(): void {
-  this.obtenerUbicacion()
-    .then((ubicacion) => {
-      this.horaEntrada = this.obtenerHoraActual();
-      this.registro.idUsuario = this.idUsuario; 
-      this.registro.dia = this.relojCard.split(' ')[0];
-      this.registro.entrada.hora = this.horaEntrada;
-      this.registro.entrada.lat = ubicacion.lat;
-      this.registro.entrada.lng = ubicacion.lng;
-      this.fichajesService.setFichajeEntrada(this.registro)
-        .subscribe((response) => {
-          console.log('Fichaje de entrada registrado:', response);
-        });
-
-      console.log('Entrada fichada a las:', this.registro);
-      console.log('Ubicación de entrada:', ubicacion.lat, ubicacion.lng);
-    })
-    .catch((error) => {
-      console.error('Error al obtener la ubicación para entrada:', error);
-    });
-}
-
+    this.obtenerUbicacion()
+      .then((ubicacion) => {
+        this.horaEntrada = this.obtenerHoraActual();
+        this.registro.idUsuario = this.idUsuario;
+        this.registro.dia = this.relojCard.split(' ')[0];
+        this.registro.entrada.hora = this.horaEntrada;
+        this.registro.entrada.lat = ubicacion.lat;
+        this.registro.entrada.lng = ubicacion.lng;
+        this.fichajesService
+          .setFichajeEntrada(this.registro)
+          .subscribe((response) => {
+            console.log('Fichaje de entrada registrado:', response);
+          });
+        this.existeFichajeHoy = true;
+      })
+      .catch((error) => {
+        console.error('Error al obtener la ubicación para entrada:', error);
+      });
+  }
 
   ficharSalida(): void {
     this.obtenerUbicacion()
@@ -104,7 +101,13 @@ export class AnadirFichejesComponent {
     this.secondTransform = `rotate(${seg * 6}deg)`;
     this.minuteTransform = `rotate(${min * 6 + seg * 0.1}deg)`;
     this.hourTransform = `rotate(${(hora % 12) * 30 + min * 0.5}deg)`;
-    this.relojCard = `${ahora.toLocaleDateString('es-ES')} ${hora.toString().padStart(2, '0')}:${min.toString().padStart(2, '0')}:${seg.toString().padStart(2, '0')}`;
+    const year = ahora.getFullYear();
+    const month = (ahora.getMonth() + 1).toString().padStart(2, '0');
+    const day = ahora.getDate().toString().padStart(2, '0');
+    const horaStr = hora.toString().padStart(2, '0');
+    const minStr = min.toString().padStart(2, '0');
+    const segStr = seg.toString().padStart(2, '0');
+    this.relojCard = `${year}-${month}-${day} ${horaStr}:${minStr}:${segStr}`;
   }
 
   obtenerUbicacion(): Promise<{ lat: number; lng: number }> {
@@ -127,6 +130,18 @@ export class AnadirFichejesComponent {
     });
   }
 
-  
-
+  obtenerFichajesByUserAndDay() {
+    this.fichajesService.getFichajesByUserAndDay(this.idUsuario, new Date().toISOString().split('T')[0]).subscribe(
+      (response: any[]) => {
+        this.existeFichajeHoy = response.length > 0;
+        if (this.existeFichajeHoy) {
+          const horaFichajeEntrada = response[0].entrada.hora;
+          this.horaEntrada = horaFichajeEntrada;
+        }
+      },
+      (error) => {
+        console.error('Error al obtener los fichajes:', error);
+      }
+    );
+}
 }

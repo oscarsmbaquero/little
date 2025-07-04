@@ -18,4 +18,10 @@ export class FichajesService {
   getFichajesByUser(idUsuario: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}fichajes/${idUsuario}`);
   }
+
+  getFichajesByUserAndDay(idUsuario: number, dia: string): Observable<any> {
+    console.log(idUsuario, dia);
+    
+    return this.http.get(`${environment.apiUrl}fichajes/${idUsuario}/${dia}`);
+  }
 }
