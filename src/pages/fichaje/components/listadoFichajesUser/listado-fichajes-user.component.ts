@@ -39,6 +39,7 @@ export class ListadoFichajesUserComponent implements OnInit {
               .getLocalidadFromCoordinates(lat, lng)
               .subscribe((localidad) => {
                 this.fichajes[index].localidadEntrada = localidad;
+                this.fichajes[index].localidadSalida = localidad;
               });
           } else {
             this.fichajes[index].localidadEntrada = 'No disponible';

@@ -15,6 +15,12 @@ export class FichajesService {
     return this.http.post(`${environment.apiUrl}fichajes`, registro);
   }
 
+    setFichajeSalida(registro: any): Observable<any> {
+      console.log(registro);
+      
+    return this.http.post(`${environment.apiUrl}fichajes/salida`, registro);
+  }
+
   getFichajesByUser(idUsuario: number): Observable<any> {
     return this.http.get(`${environment.apiUrl}fichajes/${idUsuario}`);
   }

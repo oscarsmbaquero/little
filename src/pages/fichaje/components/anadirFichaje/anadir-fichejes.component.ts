@@ -22,6 +22,7 @@ export class AnadirFichejesComponent {
   tienda!: string;
   idUsuario!: number;
   relojCard: any;
+  disabledSalidaFichaje = true;
   registro: FichajeDiario = {
     idUsuario: 0,
     dia: '',
@@ -82,13 +83,21 @@ export class AnadirFichejesComponent {
   ficharSalida(): void {
     this.obtenerUbicacion()
       .then((ubicacion) => {
-        this.horaSalida = this.obtenerHoraActual();
-        console.log('Salida fichada a las:', this.horaSalida);
-        console.log('Ubicación de salida:', ubicacion.lat, ubicacion.lng);
-        // Aquí puedes enviar la hora y la ubicación a tu backend si lo necesitas
+        this.horaEntrada = this.obtenerHoraActual();
+        this.registro.idUsuario = this.idUsuario;
+        this.registro.dia = this.relojCard.split(' ')[0];
+        this.registro.salida.hora = this.horaEntrada;
+        this.registro.salida.lat = ubicacion.lat;
+        this.registro.salida.lng = ubicacion.lng;
+        this.fichajesService
+          .setFichajeSalida(this.registro)
+          .subscribe((response) => {
+            console.log('Fichaje de salida registrado:', response);
+          });
+        this.existeFichajeHoy = true;
       })
       .catch((error) => {
-        console.error('Error al obtener la ubicación para salida:', error);
+        console.error('Error al obtener la ubicación para entrada:', error);
       });
   }
 
@@ -137,6 +146,7 @@ export class AnadirFichejesComponent {
         if (this.existeFichajeHoy) {
           const horaFichajeEntrada = response[0].entrada.hora;
           this.horaEntrada = horaFichajeEntrada;
+          this.disabledSalidaFichaje = false
         }
       },
       (error) => {
