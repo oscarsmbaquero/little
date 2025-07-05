@@ -1,10 +1,10 @@
 import { environment } from '../../../enviroment/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { IUser, IUserResponse } from '../../models/user-models';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -54,4 +54,14 @@ export class UsersService {
     this.currentUserSubject.next(null);
     localStorage.removeItem('user');
   }
+
+  getUsers(): Observable<IUser[]> {
+  const endpoint = `${environment.apiUrl}users`;
+  return this.httpClient.get<IUser[]>(endpoint).pipe(
+    catchError((error: HttpErrorResponse) => {
+      console.error('Error al obtener los usuarios:', error);
+      return throwError(() => error);
+    })
+  );
+}
 }

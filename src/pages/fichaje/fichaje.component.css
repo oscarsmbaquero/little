@@ -15,11 +15,14 @@
   color: rgb(95, 91, 91);
   outline: none;
   transition: color 0.3s;
+  font-size: 18px;
+  font: "Poppins", sans-serif;
 }
 
 .tab-button.active {
   color: rgb(7, 146, 14);
-font-weight: bold;
+  font-weight: bold;
+  border-bottom: 3px solid  rgb(7, 146, 14);;
 }
 
 .tab-button:hover {

@@ -62,12 +62,12 @@
               data-target=".navbar-collapse.show"
               data-bs-dismiss="offcanvas"
             >
-              <span>Fichaje</span>
+              <span>FICHAJE</span>
             </a>
           </li>
         
           <hr class="dropdown-divider" />  
-          <li
+          <!-- <li
             class="nav-item"
             (click)="selectOption('facturas')"
             [class.selected]="selectedOption === 'facturas'"
@@ -98,24 +98,26 @@
             >
               <span>Opciones</span>
             </a>
-          </li>
-          <hr class="dropdown-divider" />
-          <li
-            (click)="selectOption('menu')"
-            [class.selected]="selectedOption === 'menu'"
-            class="nav-item"
-            routerLinkActive="active"
-          >
-            <a
-              class="nav-link"
-              [routerLink]="['/menu']"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-              data-bs-dismiss="offcanvas"
+          </li> -->
+          @if(isRolAdmin){                        
+            <li
+              (click)="selectOption('menu')"
+              [class.selected]="selectedOption === 'menu'"
+              class="nav-item"
+              routerLinkActive="active"
             >
-              <span>Menu</span>
-            </a>
-          </li>
+              <a
+                class="nav-link"
+                [routerLink]="['/menu']"
+                data-toggle="collapse"
+                data-target=".navbar-collapse.show"
+                data-bs-dismiss="offcanvas"
+              >
+                <span>MENU</span>
+              </a>
+            </li>
+            <hr class="dropdown-divider" />
+          }
           }
         </ul>
         <ul class="navbar-nav ml-auto my-2 my-lg-0" style="padding: 15px">
@@ -127,7 +129,7 @@
               data-toggle="collapse"
               data-target=".navbar-collapse.show"
               data-bs-dismiss="offcanvas"
-              ><span>Iniciar sesión</span>
+              ><span>Acceder</span><img src="../../../assets/images/emtrar.jpg" width="38px"/>
             </a>
           </li>
           } @else {
@@ -139,7 +141,7 @@
                 data-bs-target=".navbar-collapse.show"
                 data-bs-dismiss="offcanvas"
                 (click)="logout()"
-              ><span>Cerrar sesión</span>                
+              ><span>Salir</span><img src="../../../assets/images/salir.webp" width="38px"/>                
               </a>
             </li>
           }

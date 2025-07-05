@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-12 col-md-6 col-lg-4">
       <div class="form-group">
-        <label for="miSelect">Selecciona una opción:</label>
+        <label for="miSelect">Selecciona un trabajador:</label>
         <select
           id="miSelect"
           class="form-control"
@@ -10,7 +10,7 @@
           name="miSelect"
         >
           @for (opcion of opciones; track opcion.valor) {
-            <option [value]="opcion.valor">{{ opcion.label }}</option>
+            <option [value]="opcion.valor">{{ opcion.user }}</option>
           }
         </select>
       </div>

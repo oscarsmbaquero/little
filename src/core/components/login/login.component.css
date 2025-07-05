@@ -42,9 +42,9 @@ form{
 }
 
 input[formControlName] {
-  width: 60%; /* El input ocupa todo el ancho del contenedor */
-  padding-right: 2.5rem; /* Espacio para el ícono */
-  box-sizing: border-box; /* Incluye padding en el ancho total */
+  width: 60%; 
+  padding-right: 2.5rem; 
+  box-sizing: border-box; 
   font-size: 16px;
   width: 100%;
   padding: 10px;
@@ -52,6 +52,7 @@ input[formControlName] {
   border: 1px solid #f1eded;
   border-radius: 4px;
   font-size: 16px !important;
+  color: #555;
 }
 
 .input-container i {
