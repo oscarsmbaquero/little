@@ -1,20 +1,24 @@
-<div class="card">
-  <p-tabs value="0" >
-    <p-tablist>
-      <p-tab value="0" style="color: black;">Fichar</p-tab>
-      <p-tab value="1" style="color: black;">Registro</p-tab>
-    </p-tablist>
-    <p-tabpanels>
-      <p-tabpanel value="0">
-        <p class="m-0">
-          <app-anadir-fichejes></app-anadir-fichejes>
-        </p>
-      </p-tabpanel>
-      <p-tabpanel value="1">
-        <p class="m-0">
-         <app-listado-fichajes-user></app-listado-fichajes-user>
-        </p>
-      </p-tabpanel>
-    </p-tabpanels>
-  </p-tabs>
+<div class="">
+  <div class="tabs">
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 0" 
+      (click)="activeTab = 0">
+      Fichar
+    </button>
+    <button 
+      class="tab-button" 
+      [class.active]="activeTab === 1" 
+      (click)="activeTab = 1">
+      Registro
+    </button>
+  </div>
+
+  <div class="tab-content">
+    @if (activeTab === 0) {
+      <app-anadir-fichejes></app-anadir-fichejes>
+    } @else if (activeTab === 1) {
+      <app-listado-fichajes-user></app-listado-fichajes-user>
+    }
+  </div>
 </div>

@@ -13,4 +13,5 @@ import { ListadoFichajesUserComponent } from './components/listadoFichajesUser/l
   styleUrl: './fichaje.component.css',
 })
 export class FichajeComponent  {
+  activeTab = 0;
 }

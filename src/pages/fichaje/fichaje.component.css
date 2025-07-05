@@ -1,21 +1,31 @@
-:host ::ng-deep .p-tablist-tab-list {
-  background: #fff !important;
-  border-color: #ccc !important;
-  display: flex !important;
-  justify-content: center !important;
-  color: black !important;
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+  align-items: center;
+  gap: 1rem;
 }
 
-:host ::ng-deep .p-tabpanels {
-  /* background: #ffffff !important; */
-    background-color: transparent !important;
+.tab-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  background: transparent; /* fondo transparente */
+  cursor: pointer;
+  font-weight: bold;
+  color: rgb(95, 91, 91);
+  outline: none;
+  transition: color 0.3s;
 }
 
-:host ::ng-deep .p-tab-active {
-  /* background: red !important; */
-  font-weight: bold !important;
-  color:rgb(7, 146, 14) !important;
+.tab-button.active {
+  color: rgb(7, 146, 14);
+font-weight: bold;
 }
-.card{
-  border: none !important;
+
+.tab-button:hover {
+  color: thistle;
+}
+
+.tab-content {
+  padding: 1rem 0;
 }
