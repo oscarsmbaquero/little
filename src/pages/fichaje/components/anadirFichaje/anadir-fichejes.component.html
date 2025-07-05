@@ -20,7 +20,6 @@
             @if(fichajeRegistradoOk){<p-message severity="success" icon="pi pi-times-circle" styleClass="mb-2">REGISTRADO OK</p-message>}
             @if(!existeFichajeHoy){
             <p-button
-              styleClass="w-100"
               label="Fichar entrada"
               severity="success"
               (click)="ficharEntrada()"
@@ -28,7 +27,6 @@
             } @if (existeFichajeHoy) {
               <p-button
               [disabled]="true"
-              styleClass="w-100"
               label="Hora entrada: {{horaEntrada}}"
               severity="success"
               (click)="ficharEntrada()"
@@ -39,8 +37,7 @@
             </p> -->
             }
             <p-button
-            [disabled]="horaSalida"
-              styleClass="w-100"
+            [disabled]="horaSalida"              
               [label]="horaSalida ? 'Hora de salida: ' + horaSalida : 'Fichar salida'"
               severity="info"
               (click)="ficharSalida()"

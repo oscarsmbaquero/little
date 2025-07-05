@@ -50,7 +50,7 @@ userActive: any;
     this.usersService.getCurrentUser().subscribe(user => {
       this.userActive = user?.data || '';
       this.isRolAdmin = this.userActive.data.rol === 'admin';
-      console.log(this.isRolAdmin);
+      console.log(this.isRolAdmin,'isrolAdmin');
       
       console.log(this.userActive.data.rol, 'navbar');
     }); 

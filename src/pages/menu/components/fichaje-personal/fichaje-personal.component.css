@@ -34,7 +34,9 @@ td:nth-child(3) {
 th:nth-child(1),
 th:nth-child(2),
 th:nth-child(3),
-th:nth-child(4){
+th:nth-child(4),
+th:nth-child(5),
+th:nth-child(6){
   background-color:  rgb(7, 146, 14);
 }
 
