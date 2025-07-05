@@ -52,7 +52,7 @@ input[formControlName] {
   border: 1px solid #f1eded;
   border-radius: 4px;
   font-size: 16px !important;
-  color: #555;
+  background-color: #555 !important;
 }
 
 .input-container i {
