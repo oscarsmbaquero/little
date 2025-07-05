@@ -39,17 +39,17 @@
             </p> -->
             }
             <p-button
-            [disabled]="disabledSalidaFichaje"
+            [disabled]="horaSalida"
               styleClass="w-100"
-              label="Fichar salida"
+              [label]="horaSalida ? 'Hora de salida: ' + horaSalida : 'Fichar salida'"
               severity="info"
               (click)="ficharSalida()"
             ></p-button>
-            @if (horaSalida) {
+            <!-- @if (horaSalida) {
             <p class="text-muted">
               Hora de salida: <strong>{{ horaSalida }}</strong>
             </p>
-            }
+            } -->
           </div>
         </div>
       </div>
