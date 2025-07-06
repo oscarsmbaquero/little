@@ -47,12 +47,16 @@ userActive: any;
     this.subscription = this.navbarService.selectedOption$.subscribe(option => {
       this.selectedOption = option;
     });
-    this.usersService.getCurrentUser().subscribe(user => {      
-      this.userActive = user ;
+     const usuario = JSON.parse(localStorage.getItem('user') || '{}');
+     
+      this.userActive = usuario ;
       this.isRolAdmin = this.userActive.data.rol;
-      console.log(this.isRolAdmin);
+    // this.usersService.getCurrentUser().subscribe(user => {    
+    //   console.log('entro');
+        
+    //   console.log(this.isRolAdmin);
       
-    }); 
+    // }); 
     this.translate.setDefaultLang('es');
     this.translationService.getCurrentLanguage().subscribe(lang => {
       //this.currentLanguage = lang;
