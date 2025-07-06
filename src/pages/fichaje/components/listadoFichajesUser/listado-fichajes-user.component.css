@@ -13,8 +13,13 @@ thead {
 th, td {
   border: 1px solid #ccc;
   padding: 8px 10px;
-  text-align: center;
-  color: white;
+  text-align: center;  
+}
+th {
+  color: white
+}
+td {
+  color: black ;
 }
 
 /* td:nth-child(1),

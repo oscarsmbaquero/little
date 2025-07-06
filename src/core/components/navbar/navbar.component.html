@@ -99,7 +99,7 @@
               <span>Opciones</span>
             </a>
           </li> -->
-          @if(isRolAdmin){                        
+          @if(isRolAdmin === 'admin'){                        
             <li
               (click)="selectOption('menu')"
               [class.selected]="selectedOption === 'menu'"

@@ -31,7 +31,7 @@ userActive: any;
   private subscription: Subscription = new Subscription;
   selectedLanguage: string | undefined;
   activeUser: any;
-  isRolAdmin = false
+  isRolAdmin = ''
 
   constructor( 
     private navbarService: NavbarService,
@@ -47,12 +47,11 @@ userActive: any;
     this.subscription = this.navbarService.selectedOption$.subscribe(option => {
       this.selectedOption = option;
     });
-    this.usersService.getCurrentUser().subscribe(user => {
-      this.userActive = user?.data || '';
-      this.isRolAdmin = this.userActive.data.rol === 'admin';
-      console.log(this.isRolAdmin,'isrolAdmin');
+    this.usersService.getCurrentUser().subscribe(user => {      
+      this.userActive = user ;
+      this.isRolAdmin = this.userActive.data.rol;
+      console.log(this.isRolAdmin);
       
-      console.log(this.userActive.data.rol, 'navbar');
     }); 
     this.translate.setDefaultLang('es');
     this.translationService.getCurrentLanguage().subscribe(lang => {
