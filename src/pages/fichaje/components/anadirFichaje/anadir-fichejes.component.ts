@@ -3,11 +3,12 @@ import { FichajeDiario } from '../../../../core/models/fichaje-models';
 import { FichajesService } from '../../../../core/services/fichajes/fichajes.service';
 import { ButtonModule } from 'primeng/button';
 import { MessageModule } from 'primeng/message';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-anadir-fichejes',
   standalone: true,
-  imports: [ButtonModule, MessageModule],
+  imports: [ButtonModule, MessageModule, TooltipModule],
   templateUrl: './anadir-fichejes.component.html',
   styleUrl: './anadir-fichejes.component.css',
 })
@@ -25,6 +26,7 @@ export class AnadirFichejesComponent {
   idUsuario!: number;
   relojCard: any;
   disabledSalidaFichaje = true;
+  fichajeSalidaOk = false;
   registro: FichajeDiario = {
     idUsuario: 0,
     dia: '',
@@ -80,6 +82,7 @@ export class AnadirFichejesComponent {
             }, 2500);
           });
         this.existeFichajeHoy = true;
+        this.fichajeSalidaOk = true;
       })
       .catch((error) => {
         console.error('Error al obtener la ubicación para entrada:', error);
@@ -100,11 +103,12 @@ export class AnadirFichejesComponent {
           .subscribe((response) => {
             console.log('Fichaje de salida registrado:', response);
           });
-        this.existeFichajeHoy = true;
         this.fichajeRegistradoOk = true;
+        this.obtenerFichajesByUserAndDay();
             setTimeout(() => {
               this.fichajeRegistradoOk = false;
             }, 2500);
+            this.fichajeSalidaOk = false;
       })
       .catch((error) => {
         console.error('Error al obtener la ubicación para entrada:', error);

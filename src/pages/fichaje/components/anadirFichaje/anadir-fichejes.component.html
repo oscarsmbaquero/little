@@ -37,7 +37,8 @@
             </p> -->
             }
             <p-button
-            [disabled]="horaSalida"              
+               [pTooltip]="!fichajeSalidaOk ? 'No hay registro de entrada' : ''"
+              [disabled]="!fichajeSalidaOk"              
               [label]="horaSalida ? 'Hora de salida: ' + horaSalida : 'Fichar salida'"
               severity="info"
               (click)="ficharSalida()"
