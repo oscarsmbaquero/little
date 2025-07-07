@@ -47,30 +47,22 @@ userActive: any;
     this.subscription = this.navbarService.selectedOption$.subscribe(option => {
       this.selectedOption = option;
     });
-     const usuario = JSON.parse(localStorage.getItem('user') || '{}');
-     
-      this.userActive = usuario ;
-      this.isRolAdmin = this.userActive.data.rol;
-    // this.usersService.getCurrentUser().subscribe(user => {    
-    //   console.log('entro');
-        
-    //   console.log(this.isRolAdmin);
+    this.usersService.getCurrentUser().subscribe((user) => {
+      this.activeUser = user;
+      console.log(this.activeUser, 'activeUser');
       
-    // }); 
-    this.translate.setDefaultLang('es');
-    this.translationService.getCurrentLanguage().subscribe(lang => {
-      //this.currentLanguage = lang;
-      //this.updateFlag(lang); // Método que cambia la bandera
-      console.log(lang);
-      this.textoIdioma =  lang.charAt(0).toUpperCase() + lang.slice(1);
-      this.currentLanguage =this.pintarIdioma(lang);
-      console.log(this.currentLanguage);
-
-      
-      
-      
+      if (this.activeUser) {
+       // this.activeUserName = this.activeUser.data.user;
+        // if (this.activeUser.data.image) {
+        //   this.avatarPhoto = true;
+        //   this.avatarImage = this.activeUser.data.image;
+        // }
+        // if (this.activeUserName) {
+        //   this.lettersAvatar(this.activeUserName);
+        //   this.obtenerPedidos();
+        // }
+      }
     });
-    //this.languageActual();
   }
 
   ngOnDestroy() {

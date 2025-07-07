@@ -3,6 +3,7 @@ import { FichajeComponent } from '../pages/fichaje/fichaje.component';
 import { LoginComponent } from '../core/components/login/login.component';
 import { MenuComponent } from '../pages/menu/menu.component';
 import { FichajePersonalComponent } from '../pages/menu/components/fichaje-personal/fichaje-personal.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -11,12 +12,15 @@ export const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "fichaje",//raiz de la app
-    pathMatch: 'full',//coincida nombre exacto
+    path: "fichaje",
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
     component: FichajeComponent
   },
   {
-    path: "menu",//raiz de la app
+    path: "menu",
+    canActivate: [AuthGuard],
+    data: { expectedRole: 'admin' },
     pathMatch: 'full',//coincida nombre exacto
     component: MenuComponent
   },

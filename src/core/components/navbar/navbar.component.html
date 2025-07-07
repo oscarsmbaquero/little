@@ -49,7 +49,7 @@
       <!--primera lista-->
       <div class="offcanvas-body">
         <ul class="navbar-nav mx-auto my-2 my-lg-0" style="padding: 15px">
-          @if(userActive){
+          @if(activeUser){
             <li
             class="nav-item"
             (click)="selectOption('fichaje')"
@@ -66,40 +66,7 @@
             </a>
           </li>
         
-          <hr class="dropdown-divider" />  
-          <!-- <li
-            class="nav-item"
-            (click)="selectOption('facturas')"
-            [class.selected]="selectedOption === 'facturas'"
-          >
-            <a
-              class="nav-link"
-              [routerLink]="['facturas']"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-              data-bs-dismiss="offcanvas"
-            >
-              <span>Opciones</span>
-            </a>
-          </li>
-          <hr class="dropdown-divider" />
-          <li
-            (click)="selectOption('chatbox')"
-            [class.selected]="selectedOption === 'chatbox'"
-            class="nav-item"
-            routerLinkActive="active"
-          >
-            <a
-              class="nav-link"
-              [routerLink]="['/chatbox']"
-              data-toggle="collapse"
-              data-target=".navbar-collapse.show"
-              data-bs-dismiss="offcanvas"
-            >
-              <span>Opciones</span>
-            </a>
-          </li> -->
-          @if(isRolAdmin === 'admin'){                        
+          <hr class="dropdown-divider" />                   
             <li
               (click)="selectOption('menu')"
               [class.selected]="selectedOption === 'menu'"
@@ -118,10 +85,10 @@
             </li>
             <hr class="dropdown-divider" />
           }
-          }
+          
         </ul>
         <ul class="navbar-nav ml-auto my-2 my-lg-0" style="padding: 15px">
-          @if(!userActive){
+          @if(!activeUser){
           <li class="nav-item" routerLinkActive="active">
             <a
               class="nav-link"
