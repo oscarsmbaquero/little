@@ -2,10 +2,10 @@
     <div class="row"> 
         <!-- col-md-6 -->
       @for (card of menu; track card.id) {
-        <div  class="col-12 mb-4">
+        <div  class="col-12 mb-4 ">
             @if(!card.disabled){
                 <a [routerLink]="card.link" class="card-link">
-                  <div class="card">
+                  <div class="card shadow rounded">
                     <div>
                       <img
                         [src]="card.imageUrl"
