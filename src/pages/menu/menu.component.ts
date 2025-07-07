@@ -25,7 +25,7 @@ export class MenuComponent {
       imageUrl:
         'https://res.cloudinary.com/dcfk8yjwr/image/upload/v1751886783/trabajadores_ehp77i.png',
       description: 'Listado empleados',
-      link: ['/chat', 'comercial'],
+      link: ['/listado-usuarios'],
       badge: true,
       disabled : false
     },
